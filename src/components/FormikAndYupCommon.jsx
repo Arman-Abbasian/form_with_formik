@@ -1,9 +1,13 @@
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import BooleanCheckBox from "../common/BooleanCheckBox";
+import CheckBox from "../common/CheckBox";
+import CheckboxToggle from "../common/CheckboxToggle";
 import  Input  from "../common/Input";
 import RadioButton from "../common/RadioButton";
+import SelectOptions from "../common/SelectOptions";
 
-const initialValues={name:"",email:"",phoneNumber:"",password:"",passwordConfirmation:"",gender:""}
+const initialValues={name:"",email:"",phoneNumber:"",password:"",passwordConfirmation:"",gender:"",nationality:"",interests:[],terms:false,termToggle:false}
 const onSubmit=(values)=>{
     console.log(values);
 }
@@ -15,13 +19,28 @@ const validationSchema=Yup.object({
     phoneNumber: Yup.string().required("phone number is required").matches(phoneRegExp, 'Phone number is not valid'),
     password:Yup.string().required('password is required'),
     passwordConfirmation:Yup.string().required('password confirmation is required').oneOf([Yup.ref('password'), null], 'Passwords must match'),
-    gender:Yup.string().required("please select your gender")
+    gender:Yup.string().required("please select your gender"),
+    nationality:Yup.string().required("please select your nationality"),
+    interests:Yup.array().required("please select a option").min(1),
+    terms:Yup.boolean().required('Required').oneOf([true], 'You must accept the terms and conditions.'),
+    termToggle:Yup.boolean()
 })
 
 const genderOptions=[
     {id:1,label:"male",value:"male"},
     {id:2,label:"female",value:"female"}
-]
+];
+const nationalityOptions=[
+    {id:0,label:"select a country",value:""},
+    {id:1,label:"Iran",value:"IR"},
+    {id:2,label:"Germany",value:"GR"},
+    {id:3,label:"France",value:"FR"}
+];
+const interestsOptions=[
+    {id:1,label:"React",value:"React"},
+    {id:2,label:"Veu",value:"Veu"},
+    {id:3,label:"Angular",value:"Angular"}
+];
 const FormikAndYupCommon = () => {
     const formik=useFormik({initialValues,onSubmit,validationSchema,validateOnMount:true});
     console.log(formik.errors);
@@ -37,6 +56,10 @@ const FormikAndYupCommon = () => {
                 <Input name='password' formik={formik} />
                 <Input name='passwordConfirmation'  formik={formik} />
                 <RadioButton options={genderOptions} formik={formik} name="gender" />
+                <SelectOptions options={nationalityOptions} name="nationality" formik={formik} />
+                <CheckBox options={interestsOptions} name="interests" formik={formik} />
+                <BooleanCheckBox name="terms" label="I am agree with the website's laws" formik={formik} />
+                <CheckboxToggle name="termToggle" />
                 <button disabled={!formik.isValid} className="py-2 px-4 bg-blue-500 rounded-md w-full" type="submit">submit</button>
                 </div>
             </form>

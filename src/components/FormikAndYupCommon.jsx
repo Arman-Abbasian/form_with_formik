@@ -59,7 +59,7 @@ const FormikAndYupCommon = () => {
                 <SelectOptions options={nationalityOptions} name="nationality" formik={formik} />
                 <CheckBox options={interestsOptions} name="interests" formik={formik} />
                 <BooleanCheckBox name="terms" label="I am agree with the website's laws" formik={formik} />
-                <CheckboxToggle name="termToggle" />
+                <CheckboxToggle name="termToggle" label="form toggle" formik={formik} />
                 <button disabled={!formik.isValid} className="py-2 px-4 bg-blue-500 rounded-md w-full" type="submit">submit</button>
                 </div>
             </form>

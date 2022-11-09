@@ -6,6 +6,14 @@ import CheckboxToggle from "../common/CheckboxToggle";
 import  Input  from "../common/Input";
 import RadioButton from "../common/RadioButton";
 import SelectOptions from "../common/SelectOptions";
+import { MdPersonOutline } from "react-icons/md";
+import { MdOutlineEmail } from "react-icons/md";
+import { BiMobile } from "react-icons/bi";
+import { RiLockPasswordLine } from "react-icons/ri";
+
+
+
+
 
 const initialValues={name:"",email:"",phoneNumber:"",password:"",passwordConfirmation:"",gender:"",nationality:"",interests:[],terms:false,termToggle:false}
 const onSubmit=(values)=>{
@@ -49,12 +57,13 @@ const FormikAndYupCommon = () => {
     return ( 
         <div className="bg-green-500">
             <form onSubmit={formik.handleSubmit} className="container mx-auto max-w-md p-2 ">
-                <div className="flex flex-col justify-center items-center">
-                <Input name='name'  formik={formik} />
-                <Input name='email'  formik={formik} />
-                <Input name='phoneNumber' formik={formik} />
-                <Input name='password' formik={formik} />
-                <Input name='passwordConfirmation'  formik={formik} />
+                <div className="flex flex-col gap-4 justify-center items-center">
+                <Input name='name'  formik={formik} logo={<MdPersonOutline className="w-8 h-8 absolute top-1/2 left-1" />} />
+                <Input name='email'  formik={formik} logo={<MdOutlineEmail className="w-8 h-8 absolute top-1/2 left-1" />}/>
+                <Input name='phoneNumber' formik={formik} logo={<BiMobile className="w-8 h-8 absolute top-1/2 left-1" />} />
+                <Input name='password' formik={formik}  logo={<RiLockPasswordLine className="w-8 h-8 absolute top-1/2 left-1" />}/>
+                <Input name='passwordConfirmation'  formik={formik} logo={<RiLockPasswordLine className="w-8 h-8 absolute top-1/2 left-1" />} />
+                <input type="file" id="myfile" name="myfile" />
                 <RadioButton options={genderOptions} formik={formik} name="gender" />
                 <SelectOptions options={nationalityOptions} name="nationality" formik={formik} />
                 <CheckBox options={interestsOptions} name="interests" formik={formik} />

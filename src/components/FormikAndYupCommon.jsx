@@ -10,6 +10,7 @@ import { MdPersonOutline } from "react-icons/md";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiMobile } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { RiFlagLine } from "react-icons/ri";
 
 
 
@@ -39,7 +40,7 @@ const genderOptions=[
     {id:2,label:"female",value:"female"}
 ];
 const nationalityOptions=[
-    {id:0,label:"select a country",value:""},
+    {id:0,label:"select your country",value:""},
     {id:1,label:"Iran",value:"IR"},
     {id:2,label:"Germany",value:"GR"},
     {id:3,label:"France",value:"FR"}
@@ -55,7 +56,7 @@ const FormikAndYupCommon = () => {
     console.log(formik.touched)
     console.log(formik.isValid);
     return ( 
-        <div className="bg-green-500">
+        <div className="bg-blue-600">
             <form onSubmit={formik.handleSubmit} className="container mx-auto max-w-md p-2 ">
                 <div className="flex flex-col gap-4 justify-center items-center">
                 <Input name='name'  formik={formik} logo={<MdPersonOutline className="w-8 h-8 absolute top-1/2 left-1" />} />
